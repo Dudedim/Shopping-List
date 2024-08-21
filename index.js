@@ -25,6 +25,10 @@ fs.readFile(filePath, 'utf-8', (error, jsonString) => {
 
 const server = http.createServer((req, res) =>{
 
+    res.setHeader('Access-Control-Allow-Origin', '*'); // Allow all origins
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
     if (req.url === '/list' && req.method === 'GET'){
         res.writeHead(200, {"Content-Type" : "application/json"});
         res.end(JSON.stringify({list: shoppingList}));  
